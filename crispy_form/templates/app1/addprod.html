@@ -1,0 +1,21 @@
+{% extends 'app1/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+<title> Add Products</title>
+{% endblock %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'app1/addprod.css' %}">
+<h1>E-Commerce Application</h1>
+<br>
+<div class="container">
+<form method="post"  class="jumbotron" style="background-color: #79ff4d;">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input type="submit"  class="btn btn-warning">
+
+</form>
+</div>
+{% endblock %}

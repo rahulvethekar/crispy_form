@@ -1,0 +1,48 @@
+{% extends 'app1/base.html'  %}
+{% load static %}
+{% block title %}
+<title>Show Products</title>
+{% endblock %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'app1/allprod.css' %}">
+
+<h1>Registered Orders</h1>
+<div class="container">
+<table border="3" class="table table-hover" >
+
+
+    <tr>
+        <th>Company</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Paid</th>
+        <th>City</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    {% for order in data %}
+    <tr>
+        <td>{{order.company}}</td>
+        <td>{{order.name}}</td>
+        <td>{{order.price}}</td>
+        <td>{{order.quantity}}</td>
+        {% if order.paid %}
+        <td>Paid</td>
+        {% else %}
+        <td>COD</td>
+        {% endif %}
+
+        <td>{{order.city}}</td>
+        <td><a href="{% url 'updt' order.id %}"><button class="btn btn-warning">Update</button></a></td>
+        <td><a href="{% url 'del' order.id %}"><button class="btn btn-danger">Delete</button></a></td>
+
+
+    </tr>
+            {% endfor %}
+</table>
+    <br>
+    <a href="{% url 'add' %}" style="margin-left:480px;"><button class="btn btn-primary">Add Product</button></a>
+</div>
+            {% endblock %}
